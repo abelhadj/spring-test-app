@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Book Library</title>
+</h:head>
+
+<h:body>
+	<h:outputText value="#{msg['loginscreen.loginmessage']}" />
+	<h:form>			
+			
+			<h:panelGrid columns="2" style="margin: 30px 0px 0px 0px; width:400px">
+				
+				<h:outputText value="#{msg['loginscreen.loginfield']} " />
+				<h:inputText id='input_login' value="#{loginBean.login}" required="true" 
+					requiredMessage="#{msg['loginscreen.please_enter_login']}"/>
+				
+				<h:outputText value="#{msg['loginscreen.passfield']} " />
+				<h:inputSecret id='input_pass' value="#{loginBean.password}" required="true" 
+					requiredMessage="#{msg['loginscreen.please_enter_password']}"/>
+				
+				
+			</h:panelGrid>		
+			<rich:messages />
+			<h:commandButton action="#{loginBean.login}" value="#{msg['loginscreen.loginbutton']}" />
+			<br />
+			<h:outputText value="#{msg['loginscreen.backmessage']}" />
+	</h:form>
+	<h:form>
+		<h:commandButton action="booksLibrary" value="#{msg['loginscreen.backbutton']}" />
+	</h:form>
+</h:body>
+</html>

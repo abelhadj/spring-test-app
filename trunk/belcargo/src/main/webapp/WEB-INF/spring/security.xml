@@ -1,0 +1,27 @@
+<beans:beans xmlns:sec="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+	<sec:http auto-config="true" access-denied-page="/faces/accessDenied.xhtml">
+		<sec:form-login login-page="/faces/login.xhtml" />
+		<sec:logout invalidate-session="true" logout-url="/logout.xhtml" logout-success-url="/faces/booksLibrary.xhtml" ></sec:logout>
+		<sec:intercept-url pattern="/faces/admin/**" access="ROLE_ADMIN" />
+		<sec:intercept-url pattern="/faces/booksList.xhtml" access="ROLE_REGISTERED,ROLE_ADMIN" />
+	</sec:http>
+
+	<!-- method security -->
+
+	<sec:global-method-security
+		secured-annotations="enabled" jsr250-annotations="enabled">
+	</sec:global-method-security>
+
+	<sec:authentication-manager alias="authenticationManager">
+		<sec:authentication-provider
+			user-service-ref="userDetailsService" />
+	</sec:authentication-manager>
+
+</beans:beans>

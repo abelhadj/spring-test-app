@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    </h:head>
+    
+    <h:body>
+		<h:outputStylesheet library="css" name="layout.css" target="head"/>
+        <div id="container">
+            <div id="top">
+                <div id="flag"><h:graphicImage value="#{resource['images:country_flag.gif']}" /></div>
+            	<table>
+            		<tr>
+            			<td>
+            				<h:graphicImage value="#{resource['images:book_logo.jpg']}" />
+            			</td>
+            			<td>
+            				<h1><h:outputText value="#{msg['top.name']}" /></h1>
+            			</td>
+            		</tr>
+            	</table>            	          
+            </div>
+            <div id="leftnav">
+	            <h:form>
+	            <h:outputText value="#{msg['left.categories.title']}" />
+	                <p>
+	                	<ul>                		
+	                		<li>
+	                			<h:commandLink action="#{booksListBean.getBooks}" value="#{msg['left.categories.fiction']}" >
+	                				<f:setPropertyActionListener target="#{booksListBean.categoryId}" value="1" />
+	                			</h:commandLink>
+	                		</li>
+	                		<li>
+	                			<h:commandLink action="#{booksListBean.getBooks}" value="#{msg['left.categories.literary.criticism']}" >
+	                				<f:setPropertyActionListener target="#{booksListBean.categoryId}" value="2" />
+	                			</h:commandLink></li>
+	                		<li>
+	                			<h:commandLink action="#{booksListBean.getBooks}" value="#{msg['left.categories.biography']}" >
+	                				<f:setPropertyActionListener target="#{booksListBean.categoryId}" value="3" />
+	                			</h:commandLink>
+	                		</li>
+	                		<br/>
+	                		<br/>
+	                		<br/>
+	                	</ul>
+	                </p>
+	                <h:outputText value="Management:" />
+	                <p>
+	                	<ul>                		
+	                		<li>
+	                			<h:commandLink action="#{addBook.showForm}" value="#{msg['books.add.fiction']}">	
+	                				<f:setPropertyActionListener target="#{addBook.categoryId}" value="1" />
+	                			</h:commandLink>	
+	                		</li>
+	                		<li>
+	                			<h:commandLink action="#{addBook.showForm}" value="#{msg['books.add.literary.criticism']}">	
+	                				<f:setPropertyActionListener target="#{addBook.categoryId}" value="2" />
+	                			</h:commandLink>	                				
+	                		</li>
+	                		<li>
+	                			<h:commandLink action="#{addBook.showForm}" value="#{msg['books.add.literary.biography']}">	
+	                				<f:setPropertyActionListener target="#{addBook.categoryId}" value="3" />
+	                			</h:commandLink>	                				
+	                		</li>	                		
+	                			                		
+	                			                		
+	                	</ul>
+	                </p>
+	            </h:form>
+            </div>
+            <div id="content">
+                <ui:insert name="content" />
+            </div>
+            <div id="footer">
+                Book Library
+            </div>
+        </div>
+ 
+    </h:body>
+    
+</html>

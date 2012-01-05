@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:rich="http://richfaces.org/rich">
+	
+  <ui:composition template="/baseTemplate.xhtml">
+       
+        <ui:define name="content">
+        <h:form>
+	            
+	       		<rich:dataTable id="carsTable" value="#{carsListBean.carsList}" var="c" rows="40">
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.loading']}" />
+	                      </f:facet>    
+	                      <h:outputText value="#{c.loading}"/>
+	                  </rich:column>
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.unloading']}" />
+	                      </f:facet>    
+	                      <h:outputText value="#{c.unloading}"/>
+	                  </rich:column>
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.date']}" />
+	                      </f:facet>    
+	                      <h:outputText value="#{c.startDate}" converter="DateTimeConverter" />
+	                  </rich:column>
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.cargo.desc']}" />
+	                      </f:facet>
+	                      <h:outputText value="#{c.minWeight} &lt;br /&gt; #{c.minWeight}"  escape="false"/>
+	                  </rich:column>
+	            </rich:dataTable>
+ 			</h:form>
+        </ui:define>
+
+  </ui:composition>
+</html>
