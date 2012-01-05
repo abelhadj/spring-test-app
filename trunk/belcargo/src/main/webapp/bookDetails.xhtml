@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+  <ui:composition template="booksLibrary.xhtml">
+       
+        <f:metadata>
+			<f:viewParam name="bookId" value="#{bookDetails.bookId}"/>
+			<f:event type="preRenderView" listener="#{bookDetails.loadBook}"/>
+		</f:metadata>
+       
+       
+        <ui:define name="content">
+        	<b><h:outputText value="#{msg['books.list.details']}"/></b><br/><br/>
+       		<h:outputText value="#{msg['books.list.name']}: "/>
+       		<h:outputText value="#{bookDetails.book.name}" /><br/>
+       		<h:outputText value="#{msg['books.list.description']}: "/>
+       		<h:outputText value="#{bookDetails.book.author}" /><br/>
+       		<h:outputText value="#{msg['books.list.price']}: "/>
+       		<h:outputText value="#{bookDetails.book.price}" /><br/>
+       		<h:outputText value="#{msg['books.list.discountprice']}: "/>
+       		<h:outputText value="#{bookDetails.book.discountPrice}" rendered="#{bookDetails.book.discountPrice!=null}"/><br/>    
+        </ui:define>
+
+  </ui:composition>
+</html>
