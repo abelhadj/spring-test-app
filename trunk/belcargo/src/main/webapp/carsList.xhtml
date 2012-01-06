@@ -11,14 +11,14 @@
         <ui:define name="content">
         <h:form>
 	            
-	       		<rich:dataTable id="carsTable" value="#{carsListBean.carsList}" var="c" rows="40">
-       				  <rich:column>
+	       		<rich:dataTable id="carsTable" value="#{carsListBean.carsList}" var="c" rows="40" >
+       				  <rich:column style="text-align:center" >
                 	      <f:facet name="header" >
 	                          <h:outputText value="#{msg['carslist.table.loading']}" />
 	                      </f:facet>    
 	                      <h:outputText value="#{c.loading}"/>
 	                  </rich:column>
-       				  <rich:column>
+       				  <rich:column style="text-align:center" >
                 	      <f:facet name="header" >
 	                          <h:outputText value="#{msg['carslist.table.unloading']}" />
 	                      </f:facet>    
@@ -34,7 +34,27 @@
                 	      <f:facet name="header" >
 	                          <h:outputText value="#{msg['carslist.table.cargo.desc']}" />
 	                      </f:facet>
-	                      <h:outputText value="#{c.minWeight} &lt;br /&gt; #{c.minWeight}"  escape="false"/>
+	                      <h:outputText value="#{c.volume} m&lt;sup&gt;3&lt;/sup&gt; , &lt;br /&gt; #{c.weight} t"  escape="false"/>
+	                  </rich:column>
+       				  <rich:column style="text-align:center">
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.truck.type']}" />
+	                      </f:facet>    
+	                      <h:outputText value="#{c.truckType.name}"/>
+	                  </rich:column>
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.notes']}" />
+	                      </f:facet>    
+	                      <h:outputText value="#{c.notesForUnregistered}"/>
+	                  </rich:column>
+       				  <rich:column>
+                	      <f:facet name="header" >
+	                          <h:outputText value="#{msg['carslist.table.customer']}" />
+	                      </f:facet>    
+						  <h:commandLink action="#{booksListBean.getBooks}" value="Заказчик"  style="color:#990000">
+               		    	  <f:setPropertyActionListener target="#{booksListBean.categoryId}" value="1" />
+               			  </h:commandLink>
 	                  </rich:column>
 	            </rich:dataTable>
  			</h:form>

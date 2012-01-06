@@ -239,21 +239,16 @@ public class Car implements Serializable{
 		return str;
 	}
 
+	public String getNotesForUnregistered() {
+		return notes.replaceAll("[0-9]", "*");
+	}
+
 	public String getLoading() {
 		String cityName = prepareStringForOutput(getCityFrom());
 		String regionName = prepareStringForOutput(getRegionFrom().getName());
 
-		if (cityName.equalsIgnoreCase(regionName)) {
-			regionName = "";
-		} else {
-			if (!StringUtils.isEmpty(regionName)) {
-				regionName = " - " + regionName;
-			}
-		}
-
-		if (!StringUtils.isEmpty(cityName)) {
-			cityName = " - " + cityName;
-		}
+		regionName = fixRegionForOutput(cityName, regionName);
+		cityName = fixCityForOutput(cityName);
 
 		return getCountryFrom().getName() + regionName + cityName;
 	}
@@ -262,6 +257,34 @@ public class Car implements Serializable{
 		String cityName = prepareStringForOutput(getCityTo());
 		String regionName = prepareStringForOutput(getRegionTo().getName());
 
+		regionName = fixRegionForOutput(cityName, regionName);
+		cityName = fixCityForOutput(cityName);
+
+		return getCountryTo().getName() + regionName + cityName;
+	}
+
+	public String getWeight() {
+		if (getMinWeight().equals(getMaxWeight())) {
+			return getMinWeight().toString();
+		}
+		return getMinWeight() + " - " + getMaxWeight();
+	}
+
+	public String getVolume() {
+		if (getMinVolume().equals(getMaxVolume())) {
+			return getMinVolume().toString();
+		}
+		return getMinVolume() + " - " + getMaxVolume();
+	}
+
+	private String fixCityForOutput(String cityName) {
+		if (!StringUtils.isEmpty(cityName)) {
+			return " - " + cityName;
+		}
+		return cityName;
+	}
+
+	private String fixRegionForOutput(String cityName, String regionName) {
 		if (cityName.equalsIgnoreCase(regionName)) {
 			regionName = "";
 		} else {
@@ -270,10 +293,6 @@ public class Car implements Serializable{
 			}
 		}
 
-		if (!StringUtils.isEmpty(cityName)) {
-			cityName = " - " + cityName;
-		}
-
-		return getCountryTo().getName() + regionName + cityName;
+		return regionName;
 	}
 }
