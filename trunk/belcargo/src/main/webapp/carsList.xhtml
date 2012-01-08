@@ -4,14 +4,22 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a4j="http://richfaces.org/a4j"
 	  xmlns:rich="http://richfaces.org/rich">
-	
+		
   <ui:composition template="/baseTemplate.xhtml">
        
         <ui:define name="content">
-        <h:form>
-	            
-	       		<rich:dataTable id="carsTable" value="#{carsListBean.carsList}" var="c" rows="40" >
+        <script>
+	  		function PopupCenter(pageURL, title, w, h) {
+	  			var left = (screen.width/2)-(w/2);
+	  			var top = (screen.height/2)-(h/2);
+	  			var targetWin = window.open (pageURL, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
+	  			targetWin.focus();
+  			} 
+		</script>
+	       		<rich:dataTable id="carsTable" value="#{carsListBean.carsList}"  rowKeyVar="key" var="c" rows="40" >
+	       		
        				  <rich:column style="text-align:center" >
                 	      <f:facet name="header" >
 	                          <h:outputText value="#{msg['carslist.table.loading']}" />
@@ -48,17 +56,15 @@
 	                      </f:facet>    
 	                      <h:outputText value="#{c.notesForUnregistered}"/>
 	                  </rich:column>
-       				  <rich:column>
+	                  <rich:column>
                 	      <f:facet name="header" >
 	                          <h:outputText value="#{msg['carslist.table.customer']}" />
-	                      </f:facet>    
-						  <h:commandLink action="#{booksListBean.getBooks}" value="Заказчик"  style="color:#990000">
-               		    	  <f:setPropertyActionListener target="#{booksListBean.categoryId}" value="1" />
-               			  </h:commandLink>
+	                      </f:facet>   
+							<a href="#" onclick="PopupCenter('carContacts.xhtml?id=#{key}', 'myPop1',500,520);return false;"> #{msg['carslist.table.customer']} </a>
 	                  </rich:column>
 	            </rich:dataTable>
- 			</h:form>
-        </ui:define>
 
+        </ui:define>
+        
   </ui:composition>
 </html>

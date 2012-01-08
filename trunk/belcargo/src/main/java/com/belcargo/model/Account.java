@@ -6,53 +6,61 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
 @Entity
-@Table(name="account")
-public class Person {
-	
+@Table(name="ACCOUNT")
+public class Account {
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="account_pk")
+	@Column(name="ACCOUNT_PK")
 	private Integer accountId;
-	@ManyToOne
-	@JoinColumn(name="role_fk")	
+	@OneToOne
+	@JoinColumn(name="ROLE_FK")
 	private Role currentRole;
-	@Column(name="login")
+	@Column(name="LOGIN")
 	private String login;
-	@Column(name="password")
+	@Column(name="PASSWORD")
 	private String password;
-	
+
+	public Account() {
+	}
+
+	public Account(String username, String password, Role role) {
+		this.login = username;
+		this.password = password;
+		this.currentRole = role;
+	}
 	public Integer getAccountId() {
 		return accountId;
 	}
 	public void setAccountId(Integer accountId) {
 		this.accountId = accountId;
 	}
-	
+
 	public Role getCurrentRole() {
 		return currentRole;
 	}
 	public void setCurrentRole(Role currentRole) {
 		this.currentRole = currentRole;
 	}
-	
+
 	public String getLogin() {
 		return login;
 	}
 	public void setLogin(String login) {
 		this.login = login;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 
 }

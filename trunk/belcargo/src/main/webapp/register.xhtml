@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:a4j="http://richfaces.org/a4j"
+   xmlns:rich="http://richfaces.org/rich">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+</h:head>
+
+<h:body>
+	
+<!-- 
+
+	<h:form id="tmp1">
+						<h:inputText id="login" value="regBean.login" maxlength="100"
+						size="50" required="true">
+					</h:inputText>
+        <h:selectOneMenu value="#{selectsBean.currentType}" valueChangeListener="#{selectsBean.valueChanged}">
+            <f:selectItems value="#{selectsBean.firstList}" />
+            <a4j:ajax event="valueChange" render="second2" execute="@this" />
+        </h:selectOneMenu>
+        <a4j:outputPanel id="second2" layout="block">
+            <h:selectOneMenu value="#{selectsBean.currentType}" rendered="#{not empty selectsBean.currentType}">
+                <f:selectItems value="#{selectsBean.secondList}" />
+            </h:selectOneMenu>
+        </a4j:outputPanel>
+    </h:form>
+    -->
+<h:form id="registerForm">
+<div class="pageTitle"><h:outputText value="#{msg.registration}"/></div>
+<br/>
+
+<rich:messages />
+<div class="center">
+			<h:panelGrid columns="2" styleClass="form" headerClass="tableHeader"
+				footerClass="tableFooter" rowClasses="tableRowOdd, tableRowEven">
+				<f:facet name="header">
+					<h:outputFormat value="#{msg.registrationBoxTitle}">
+						<f:param value="*" />
+					</h:outputFormat>
+				</f:facet>
+
+				<f:facet name="footer">
+					<h:panelGroup>
+						<h:commandButton value="#{msg.submit}"
+							action="#{regBean.register}" />
+						<h:commandButton value="#{msg.reset}" type="reset" />
+					</h:panelGroup>
+				</f:facet>
+
+
+
+				<h:outputLabel for="login" value="*#{msg.registrationEmail}" />
+				<h:panelGroup>
+					<h:inputText id="login" value="#{regBean.login}" maxlength="100"
+						size="50" required="true">
+					</h:inputText>
+					<f:verbatim>
+						<br />
+					</f:verbatim>
+					<h:outputText value=" " />
+					<rich:message for="login" styleClass="formUserError" />
+				</h:panelGroup>
+
+				<h:outputLabel for="password" value="*#{msg.registrationPassword}" />
+				<h:panelGroup>
+					<h:inputSecret id="password" value="#{regBean.password}"
+						maxlength="64" size="20" required="true" redisplay="true">
+						<f:validateLength minimum="6" />
+					</h:inputSecret>
+					<f:verbatim>
+						<br />
+					</f:verbatim>
+					<h:outputText value=" " />
+					<h:message for="password" styleClass="formUserError" />
+				</h:panelGroup>
+
+				<h:panelGroup>
+				<h:outputLabel for="countries" value="*#{msg.registrationCountry}" />
+					<h:selectOneMenu value="#{regBean.countryId}" id="countries" valueChangeListener="#{regBean.valueChanged}" render="second cities">
+					        <f:selectItem itemLabel="- Select a Country - " itemValue="0"/>  
+					        <f:selectItems value="#{regBean.countries}" var="country" itemValue="#{country.id}" itemLabel="#{country.name}"/>
+					        <a4j:ajax event="valueChange" render="second" />
+					</h:selectOneMenu> 
+					<f:verbatim>
+							<br />
+					</f:verbatim>
+					<h:outputText value=" " />
+					<h:message for="countries" styleClass="formUserError" />
+<a4j:outputPanel id="second"  layout="block">
+				<h:outputLabel for="cities" value="*#{msg.registrationCity}" />
+					 <h:selectOneMenu value="#{regBean.cityId}" id="cities">
+					        <f:selectItem itemLabel="- Select a City - " itemValue="0"/>    
+					        <f:selectItems value="#{regBean.cities}" var="city" itemValue="#{city.id}" itemLabel="#{city.name}"/>
+					 </h:selectOneMenu>
+
+
+					<f:verbatim>
+							<br />
+					</f:verbatim>
+					<h:outputText value=" " />
+					<h:message for="cities" styleClass="formUserError" />
+        </a4j:outputPanel>
+				</h:panelGroup>
+			</h:panelGrid>
+		</div>
+</h:form>
+ -->
+</h:body>
+</html>

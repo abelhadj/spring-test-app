@@ -21,7 +21,9 @@
 
 	<sec:authentication-manager alias="authenticationManager">
 		<sec:authentication-provider
-			user-service-ref="userDetailsService" />
+			user-service-ref="userDetailsService" >
+			 <sec:password-encoder hash="md5"/>
+		</sec:authentication-provider>
 	</sec:authentication-manager>
 
 </beans:beans>
