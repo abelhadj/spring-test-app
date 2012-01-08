@@ -26,18 +26,17 @@
 
 	</application>
 	
+        <!-- 
     <lifecycle>
         <phase-listener>com.belcargo.utils.RedirectListener</phase-listener>
-        <!-- 
         <phase-listener>com.belcargo.utils.MultiPageMessagesSupport</phase-listener>
-         -->
    	</lifecycle>
-
     <factory>
         <exception-handler-factory>
             com.belcargo.utils.LoggingExceptionHandlerFactory
         </exception-handler-factory>
     </factory>
+ -->
     
 	<converter>  
 		<converter-id>DateTimeConverter</converter-id>  

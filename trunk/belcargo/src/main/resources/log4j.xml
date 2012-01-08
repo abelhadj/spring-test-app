@@ -11,7 +11,7 @@
 	</appender>
 	
 	<appender name="R" class="org.apache.log4j.RollingFileAppender"> 
-		<param name="file" value="${TOMCAT_HOME}\logs\belcargo.log"/>
+		<param name="file" value="c:\Program Files\apache-tomcat-6.0.18\logs\logs\belcargo.log"/>
 		<param name="MaxFileSize" value="1024KB"/>
 		<!-- Keep one backup file -->
 		<param name="MaxBackupIndex" value="1"/>

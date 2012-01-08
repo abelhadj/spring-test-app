@@ -25,16 +25,16 @@ public class LoginBean implements Serializable {
 	public String login() {
 
 		boolean success = authenticationService.login(login, password);
-		
+
 		if (success){
-			return "booksLibrary"; // return to application but being logged now 
+			return "booksLibrary"; // return to application but being logged now
 		}
 		else{
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Wrong login or password"));			
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Wrong login or password"));
 			return "login.xhtml";
 		}
 	}
-	
+
    public String logout() {
        authenticationService.logout();
        return "login.xhtml?faces-redirect=true";
@@ -58,5 +58,9 @@ public class LoginBean implements Serializable {
 
 	public void setAuthenticationService(AuthenticationService authenticationService) {
 		this.authenticationService = authenticationService;
+	}
+
+	public AuthenticationService getAuthenticationService() {
+		return authenticationService;
 	}
 }
