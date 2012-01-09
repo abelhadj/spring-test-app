@@ -1,5 +1,6 @@
 package com.belcargo.model;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "CONTACT_INFO")
-public class ContactInfo {
+public class ContactInfo implements Serializable{
+	private static final long serialVersionUID = 694475992449364632L;
+
 	@Id
 	@Column(name = "CONTACT_INFO_PK")
 	@GeneratedValue
@@ -41,7 +44,7 @@ public class ContactInfo {
 	public void setId(BigDecimal id) {
 		this.id = id;
 	}
-	
+
 	public RegInfo getRegInfo() {
 		return regInfo;
 	}

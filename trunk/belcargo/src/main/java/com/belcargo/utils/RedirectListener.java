@@ -1,14 +1,15 @@
 package com.belcargo.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.io.IOException;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author timur
@@ -22,7 +23,8 @@ public class RedirectListener implements PhaseListener {
     public RedirectListener() {
     }
 
-    public PhaseId getPhaseId() {
+    @Override
+	public PhaseId getPhaseId() {
         return PhaseId.ANY_PHASE;
     }
 
@@ -35,7 +37,8 @@ public class RedirectListener implements PhaseListener {
      * ReDirect to the next page only if there are no Error Messages.
      */
 
-    public void beforePhase(PhaseEvent _event) {
+    @Override
+	public void beforePhase(PhaseEvent _event) {
 
         // We do this only for the RENDER_RESPONSE Phase
         if (_event.getPhaseId() != PhaseId.RENDER_RESPONSE) {
@@ -64,7 +67,8 @@ public class RedirectListener implements PhaseListener {
                 // and so the user can properly refresh their page
                 // We do this because during a re-direct the Messages are Lost
                 // and any user input is refreshed from what is currently in the model
-                if (!isMessagesRendered(facesContext)) {
+                boolean isAjaxRequest = facesContext.getPartialViewContext().isAjaxRequest();
+				if (!isMessagesRendered(facesContext) && !isAjaxRequest) {
                     log.debug("Redirecting to " + nextViewURL);
                     facesContext.getExternalContext().redirect(nextViewURL);
                 } else {
