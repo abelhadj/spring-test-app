@@ -28,6 +28,10 @@ public class CarsList implements Serializable {
 		showCarDescrPopup = false;
 	}
 
+	public String showForm () {
+		return "register.xhtml";
+	}
+
 	public void setCarsDataProvider(CarsServiceProvider carsDataProvider) {
         this.carsDataProvider = carsDataProvider;
     }
