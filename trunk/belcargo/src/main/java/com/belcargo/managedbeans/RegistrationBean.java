@@ -11,6 +11,9 @@ import javax.faces.event.ValueChangeEvent;
 
 import com.belcargo.application.LocationProviderService;
 import com.belcargo.application.RegistrationService;
+import com.belcargo.model.ContactInfo;
+import com.belcargo.model.RegInfo;
+import com.belcargo.model.lut.Activity;
 import com.belcargo.model.lut.City;
 import com.belcargo.model.lut.Country;
 
@@ -28,6 +31,8 @@ public class RegistrationBean extends LoginBean implements Serializable {
     private BigDecimal cityId = BigDecimal.ZERO;    // select the first option in the combo
     private List<Country> countries;
     private List<City> cities;
+    private List<Activity> activities;
+    private ContactInfo contactInfo;
 
     public List<Country> getCountries() {
 
@@ -76,5 +81,26 @@ public class RegistrationBean extends LoginBean implements Serializable {
 
 	public void setCityId(BigDecimal cityId) {
 		this.cityId = cityId;
+	}
+
+	public ContactInfo getContactInfo() {
+		if (contactInfo == null) {
+			initContactInfo();
+		}
+		return contactInfo;
+	}
+
+	private void initContactInfo() {
+		contactInfo = new ContactInfo();
+    	contactInfo.setRegInfo(new RegInfo());
+	}
+
+	public void setContactInfo(ContactInfo contactInfo) {
+		this.contactInfo = contactInfo;
+	}
+
+	public List<Activity> getActivities() {
+		if (activities == null) registrationService.getActivities();
+		return activities;
 	}
 }
