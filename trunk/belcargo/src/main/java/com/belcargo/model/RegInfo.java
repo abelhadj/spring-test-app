@@ -31,17 +31,19 @@ public class RegInfo {
 	private Country country;
 	@Column
 	private String city;
-	
+
 	@Column
 	private String unp;
 	@Column(name = "POST_INDEX")
 	private String postIndex;
 	@Column
+	private String address;
+	@Column
 	private String url;
 	@OneToOne
 	@JoinColumn(name = "ACTIVITY_FK")
 	private Activity activity;
-	
+
 	public Country getCountry() {
 		return country;
 	}
@@ -96,5 +98,11 @@ public class RegInfo {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 }
