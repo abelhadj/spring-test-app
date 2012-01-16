@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,7 +19,7 @@ import com.belcargo.application.AuthenticationService;
 @Service("authenticationService")
 public class AuthenticationServiceImpl implements AuthenticationService, Serializable {
 	private static final long serialVersionUID = 803721195270022922L;
-	
+
 	@Resource(name = "authenticationManager")
 	private AuthenticationManager authenticationManager; // specific for Spring Security
 
@@ -30,10 +31,11 @@ public class AuthenticationServiceImpl implements AuthenticationService, Seriali
 							username, password));
 			if (authenticate.isAuthenticated()) {
 				SecurityContextHolder.getContext().setAuthentication(
-						authenticate);				
+						authenticate);
 				return true;
 			}
-		} catch (AuthenticationException e) {			
+		} catch (AuthenticationException e) {
+		    LoggerFactory.getLogger(getClass()).error("AuthenticationException" , e);
 		}
 		return false;
 	}
@@ -48,5 +50,5 @@ public class AuthenticationServiceImpl implements AuthenticationService, Seriali
 		}
 	}
 
-	
+
 }
