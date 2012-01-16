@@ -219,9 +219,6 @@
 			
 	        <h:outputLabel for="activity" value="#{msg['register.form.activity']}" />
 			<h:panelGroup>
-				<h:inputText id="activity" value="#{regBean.contactInfo.regInfo.activity}" maxlength="100"
-					size="40">
-				</h:inputText>
 				<h:selectOneMenu value="#{regBean.contactInfo.regInfo.activity}" id="activities"
 					defaultLabel="choose activity"> 
 			        <f:selectItems value="#{regBean.activities}" var="activity" 
