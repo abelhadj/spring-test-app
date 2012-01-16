@@ -100,7 +100,7 @@ public class RegistrationBean extends LoginBean implements Serializable {
 	}
 
 	public List<Activity> getActivities() {
-		if (activities == null) registrationService.getActivities();
+		if (activities == null) activities = registrationService.getActivities();
 		return activities;
 	}
 }
