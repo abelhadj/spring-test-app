@@ -63,9 +63,9 @@
 
 			<f:facet name="footer">
 				<h:panelGroup>
-					<h:commandButton value="#{msg.submit}"
+					<h:commandButton value="#{msg['submit']}"
 						action="#{regBean.register}" />
-					<h:commandButton value="#{msg.reset}" type="reset" />
+					<h:commandButton value="#{msg['reset']}" type="reset" />
 				</h:panelGroup>
 			</f:facet> 
 
@@ -99,7 +99,7 @@
 				<rich:select value="#{regBean.countryId}" id="countries" 
 					valueChangeListener="#{regBean.valueChanged}"
 					enableManualInput="true" defaultLabel="start typing for select" 
-					render="second">
+					render="second cities">
 				        <f:selectItem itemLabel="- Select a Country - " itemValue="0"/>
 				        <f:selectItems value="#{regBean.countries}" var="country" itemValue="#{country.id}" itemLabel="#{country.name}"/>
 				        <a4j:ajax event="change" render="second" />
@@ -219,11 +219,10 @@
 			
 	        <h:outputLabel for="activity" value="#{msg['register.form.activity']}" />
 			<h:panelGroup>
-				<h:selectOneMenu value="#{regBean.contactInfo.regInfo.activity}" id="activities"
-					defaultLabel="choose activity"> 
+				<rich:select value="#{regBean.activityId}" id="activities" defaultLabel="start typing"> 
 			        <f:selectItems value="#{regBean.activities}" var="activity" 
-			        	itemValue="#{activity}" itemLabel="#{activity.name}"/>
-				 </h:selectOneMenu>
+			        	itemValue="#{activity.id}" itemLabel="#{activity.name}"/>
+				</rich:select>
 				<f:verbatim>
 					<br />
 				</f:verbatim>

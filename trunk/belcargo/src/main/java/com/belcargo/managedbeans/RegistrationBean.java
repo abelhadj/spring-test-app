@@ -27,8 +27,9 @@ public class RegistrationBean extends LoginBean implements Serializable {
 	@ManagedProperty(value = "#{locationService}")
 	private LocationProviderService locationProviderService;
 
-	private BigDecimal countryId = BigDecimal.ZERO;  // select the first option in the combo
-    private BigDecimal cityId = BigDecimal.ZERO;    // select the first option in the combo
+	private BigDecimal countryId = null;
+    private BigDecimal activityId = null;
+    private BigDecimal cityId = null;
     private List<Country> countries;
     private List<City> cities;
     private List<Activity> activities;
@@ -102,5 +103,13 @@ public class RegistrationBean extends LoginBean implements Serializable {
 	public List<Activity> getActivities() {
 		if (activities == null) activities = registrationService.getActivities();
 		return activities;
+	}
+
+	public BigDecimal getActivityId() {
+		return activityId;
+	}
+
+	public void setActivityId(BigDecimal activityId) {
+		this.activityId = activityId;
 	}
 }
