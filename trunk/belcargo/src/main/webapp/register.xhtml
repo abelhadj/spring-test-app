@@ -99,7 +99,7 @@
 				<rich:select value="#{regBean.countryId}" id="countries" 
 					valueChangeListener="#{regBean.valueChanged}"
 					enableManualInput="true" defaultLabel="start typing for select" 
-					render="second cities">
+					render="second">
 				        <f:selectItem itemLabel="- Select a Country - " itemValue="0"/>
 				        <f:selectItems value="#{regBean.countries}" var="country" itemValue="#{country.id}" itemLabel="#{country.name}"/>
 				        <a4j:ajax event="change" render="second" />
