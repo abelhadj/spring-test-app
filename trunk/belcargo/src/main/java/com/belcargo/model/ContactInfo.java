@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 @Table(name = "CONTACT_INFO")
 public class ContactInfo implements Serializable{
@@ -24,6 +26,7 @@ public class ContactInfo implements Serializable{
 	private String name;
 	@Column
 	private String street;
+	@Length(min = 1, message="Should be more than {min}")
 	@Column
 	private String phone;
 	@Column(name = "PHONE_2")
