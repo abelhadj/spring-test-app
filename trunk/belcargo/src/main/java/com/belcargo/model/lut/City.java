@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -15,17 +16,18 @@ public class City {
 	@Id
 	@Column(name = "CITY_PK")
 	private BigDecimal id;
-	
+
 	@Column(name = "NAME")
 	private String name;
-	
-	@OneToOne
+
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "COUNTRY_FK")
 	private Country country;
-	@OneToOne
+
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "REGION_FK")
 	private Region region;
-	
+
 	public BigDecimal getId() {
 		return id;
 	}
@@ -50,5 +52,5 @@ public class City {
 	public void setRegion(Region region) {
 		this.region = region;
 	}
-	
+
 }
